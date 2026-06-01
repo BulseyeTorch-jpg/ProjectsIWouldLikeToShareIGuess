@@ -9,5 +9,21 @@ MorseList = [".-","-...","-.-.","-..",".","..-.","--.",
          "--.-",".-.","...","-","..-","...-",
          ".--","-..-","-.--","--.."]
 
-def filter(ListA): 
-         pass
+def theListEning(A): 
+         listA = []
+         for i in range(len(A)): 
+                  listA.append(A[i])
+         return listA
+def Mfilter(B): 
+         Contact = Bool(False)
+         Filtered = []
+         for i in range(len(B)): 
+                  match B[i]:
+                           case .|- if Contact == False: 
+                                    Filtered.append(B[i])
+                           case .|- if Contact == True: 
+                                    pass
+                           case _: 
+                                    pass
+         return Filtered
+                  
