@@ -19,11 +19,15 @@ def Mfilter(B):
          Filtered = []
          for i in range(len(B)): 
                   match B[i]:
-                           case .|- if Contact == False: 
+                           case "."|"-" if Contact == False: 
                                     Filtered.append(B[i])
-                           case .|- if Contact == True: 
-                                    pass
-                           case _: 
+                                    Contact = True
+                           case "."|"-" if Contact == True: 
+                                    Filtered.append(Filtered.pop(i-1)+B[i])
+                                    Contact = True
+                           case " "|","|"/"|"\"|:
+                                    Contact = False
+                           case _:
                                     pass
          return Filtered
                   
