@@ -14,7 +14,7 @@ def theListEning(A):
 		listA.append(A[i])
 		return listA
 def Mfilter(B): 
-	Contact = Bool(False)
+	Contact = bool(False)
 	Filtered = []
 	for i in range(len(B)): 
 		match B[i]:
@@ -22,9 +22,9 @@ def Mfilter(B):
 				Filtered.append(B[i])
 				Contact = True
 			case "."|"-" if Contact == True: 
-				Filtered.append(Filtered.pop(i-1)+B[i])
+				Filtered.append(Filtered.pop(-1)+B[i])
 				Contact = True
-			case " "|","|"/"|:
+			case " "|","|"/"|"\\": #2 \s = 1 \ cuz escaping or something idk
 				Contact = False
 			case _:
 				Contact = False
