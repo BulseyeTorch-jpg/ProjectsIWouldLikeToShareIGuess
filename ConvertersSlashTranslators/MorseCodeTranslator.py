@@ -35,6 +35,12 @@ def Mfilter(B):
 			case _:
 				Contact = False
 	return Filtered
+
+def Demorseify(C, Alp, Mor): 
+	result = []
+	for i in range(len(C)): 
+		pass
+
 Morseified = str(input("Insert the morse code sentence you would like to translate:"))
 print(Morseified)
 Peeled = theListEning(Morseified)
