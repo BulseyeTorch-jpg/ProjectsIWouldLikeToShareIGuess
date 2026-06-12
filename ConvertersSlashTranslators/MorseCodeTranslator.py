@@ -40,3 +40,5 @@ print(Morseified)
 Peeled = theListEning(Morseified)
 Baked = Mfilter(Peeled)
 print(Baked)
+#Just add the main translation and repeat stuff for english --> morse 
+#May also wanna add more morse letters if I feel like it
