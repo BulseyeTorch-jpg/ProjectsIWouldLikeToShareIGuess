@@ -31,7 +31,7 @@ def Mfilter(B):
 				Contact = False
 			case"/": 
 				Contact = False
-				Filtered.append(" ")
+				Filtered.append("/")
 			case _:
 				Contact = False
 	return Filtered
@@ -39,12 +39,23 @@ def Mfilter(B):
 def Demorseify(C, Alp, Mor): 
 	result = []
 	for i in range(len(C)): 
-		pass
+		counter = 0
+		if C[i] == "/": 
+			result.append(" ")
+		else: 
+			while C[i] != Mor[counter]: 
+				counter += 1
+				result.append(Alp[counter])
+				if i == 26 and C[i] != Mor[counter]: 
+					return "This statement is invalid."
+	return result
 
 Morseified = str(input("Insert the morse code sentence you would like to translate:"))
 print(Morseified)
 Peeled = theListEning(Morseified)
 Baked = Mfilter(Peeled)
 print(Baked)
+Output = Demorseify(Baked, AlphaList, MorseList)
+print(Output)
 #Just add the main translation and repeat stuff for english --> morse 
 #May also wanna add more morse letters if I feel like it
