@@ -1,19 +1,35 @@
-AlphaList = ["a","b","c","d","e","f","g",
-	"h","i","j","k","l","m","n","o","p",
-	"q","r","s","t","u","v",
-	"w","x","y","z"] #Maybe add more
-
-MorseList = [".-","-...","-.-.","-..",".","..-.","--.",
+MorseCodeList = [
+	".-","-...","-.-.","-..",".","..-.","--.",
 	"....","..",".---","-.-",".-..","--","-.","---",".--.",
 	"--.-",".-.","...","-","..-","...-",
-	".--","-..-","-.--","--.."] #Maybe add more (Found an 'International' morse list)
+	".--","-..-","-.--","--..",
+	".----""..---","...--","....-",".....",
+	"-....","--...","---..","----.","-----",
+	".-.-.-","--..--","..--..",".----.","-.-.--",
+	"-..-.","---...","-.-.-.","-...-",".-.-.",
+	"-....-","..--.-",".-..-.",".--.-."
+	] 
+
+EqualsList = [
+	"a","b","c","d","e","f","g",
+	"h","i","j","k","l","m","n","o","p",
+	"q","r","s","t","u","v",
+	"w","x","y","z",
+	"1","2","3","4","5",
+	"6","7","8","9","0",
+	".",",","?","'","!",
+	"/",":",";","=","+",
+	"-","_",'"',"@"
+	] #Had to use '' indentation for "
+#is there still more?
 
 def theListEning(A): 
 	listA = []
 	for i in range(len(A)): 
 		listA.append(A[i])
 	return listA
-def Mfilter(B): 
+
+def MtoEfilter(B): 
 	Contact = bool(False)
 	Filtered = []
 	for i in range(len(B)): 
@@ -36,7 +52,22 @@ def Mfilter(B):
 				Contact = False
 	return Filtered
 
-def Demorseify(C, Alp, Mor): 
+def EtoMfilter(B, Equ): 
+	Filtered = []
+	for i in range(len(B)): 
+		counter = 0
+		if B[i] == " ": 
+			Filtered.append(" ")
+		else: 
+			while counter != len(Equ): 
+				if Equ[counter] == str.lower(B[i]): 
+					Filtered.append(B[i])
+					counter = len(Equ)
+				else: 
+					counter += 1
+	return Filtered
+
+def Demorseify(C, Equ, Mor): 
 	result = []
 	for i in range(len(C)): 
 		counter = 0
@@ -45,17 +76,46 @@ def Demorseify(C, Alp, Mor):
 		else: 
 			while C[i] != Mor[counter]: 
 				counter += 1
-				result.append(Alp[counter])
-				if i == 26 and C[i] != Mor[counter]: 
+				if i == len(C) and C[i] != Mor[counter]: 
 					return "This statement is invalid."
+			result.append(Equ[counter])
+	return result
+def Morseify(C, Equ, Mor): 
+	result = []
+	for i in range(len(C)): 
+		counter = 0
+		if C[i] == " ": 
+			result.append("/")
+		else: 
+			while C[i] != Equ[counter]: 
+				counter += 1
+				if i == len(C) and C[i] != Equ[counter]: 
+					return "This statement is invalid."
+			result.append(Mor[counter])
 	return result
 
-Morseified = str(input("Insert the morse code sentence you would like to translate:"))
-print(Morseified)
-Peeled = theListEning(Morseified)
-Baked = Mfilter(Peeled)
-print(Baked)
-Output = Demorseify(Baked, AlphaList, MorseList)
-print(Output)
-#Just add the main translation and repeat stuff for english --> morse 
-#May also wanna add more morse letters if I feel like it
+def translation(Equals, Morse): 
+	Choice = input("Are you translating to or from morse code?")
+	if str.lower(Choice[0]) == "f": 
+		Morseified = str(input("Insert the morse code sentence you would like to translate:"))
+		print(Morseified)
+		Peeled = theListEning(Morseified)
+		Baked = MtoEfilter(Peeled)
+		print(Baked)
+		Output = Demorseify(Baked, Equals, Morse)
+	elif str.lower(Choice[0]) == "t": 
+		Morseified = str(input("Insert the sentence you would like to translate into morse code:"))
+		print(Morseified)
+		Peeled = theListEning(Morseified)
+		Baked = EtoMfilter(Peeled, Equals)
+		print(Baked)
+		Output = Morseify(Baked, Equals, Morse)
+	else: 
+		print("That's an invalid option. Please try again.")
+		Output = translation(Equals, Morse)
+	return Output
+
+MorseCodeTranslatorOutput = translation(EqualsList, MorseCodeList)
+print(MorseCodeTranslatorOutput)
+#I might add more characters IF there are any more that are in Morse code
+#Still quite a few bugs
