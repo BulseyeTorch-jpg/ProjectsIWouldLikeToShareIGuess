@@ -1,6 +1,7 @@
 MorseCodeList = [
 	".-","-...","-.-.","-..",".","..-.","--.",
-	"....","..",".---","-.-",".-..","--","-.","---",".--.",
+	"....","..",".---","-.-",
+	".-..","--","-.","---",".--.",
 	"--.-",".-.","...","-","..-","...-",
 	".--","-..-","-.--","--..",
 	".----","..---","...--","....-",".....",
@@ -21,7 +22,6 @@ EqualsList = [
 	"/",":",";","=","+",
 	"-","_",'"',"@"
 	] #Had to use '' indentation for "
-#is there still more?
 
 def theListEning(A): 
 	listA = []
@@ -117,5 +117,3 @@ def translation(Equals, Morse):
 
 MorseCodeTranslatorOutput = translation(EqualsList, MorseCodeList)
 print(MorseCodeTranslatorOutput)
-#I might add more characters IF there are any more that are in Morse code
-#Still quite a few bugs
